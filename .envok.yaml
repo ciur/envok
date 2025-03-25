@@ -1,0 +1,11 @@
+test_sqlite:
+  PMG__DATABASE: sqlite://sqlite.db
+  PMG__MEDIA_ROOT: /tmp/test/root/
+
+test_pg:
+  PMG__DATABASE: postgres://user:pass@host
+  PMG__MEDIA_ROOT: /tmp/test/root
+
+dev_pg:
+  PMG__DATABASE: postgres://user2:pass2@host
+  PMG__MEDIA_ROOT: /tmp/dev/root
