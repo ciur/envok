@@ -47,7 +47,7 @@ func convertToStringMap(data interface{}) (Vars, error) {
 func Load(fileName string) ([]Profile, error) {
 	var profiles []Profile
 
-	config, err := loadConfig(".envok.yaml")
+	config, err := loadConfig(fileName)
 	if err != nil {
 		log.Fatalf("Error loading config: %v", err)
 	}

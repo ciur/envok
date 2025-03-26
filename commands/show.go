@@ -5,9 +5,10 @@ import (
 	"os"
 
 	"github.com/ciur/envok/profiles"
+	"github.com/fatih/color"
 )
 
-func ListProfiles() {
+func ShowCurrentProfile() {
 
 	currentProfileName := getCurrentProfile()
 	configPath, err := getConfigPath()
@@ -21,11 +22,24 @@ func ListProfiles() {
 		fmt.Printf("Error loading profiles: %s\n", err)
 		os.Exit(1)
 	}
+
+	if currentProfileName == "" {
+		fmt.Println("No current profile set")
+		return
+	}
+
+	fmt.Printf("---%s---\n", currentProfileName)
+
 	for _, profile := range items {
 		if profile.Name == currentProfileName {
-			fmt.Printf("%s*\n", profile.Name)
-		} else {
-			fmt.Printf("%s\n", profile.Name)
+			for k, v := range profile.Vars {
+				envVarValue := os.Getenv(k)
+				if envVarValue != v {
+					color.Red("%s=<value differ: expected=%q, actual=%q>\n", k, v, envVarValue)
+				} else {
+					color.Green("%s=%s\n", k, v)
+				}
+			}
 		}
 	}
 }

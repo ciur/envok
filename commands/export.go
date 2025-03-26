@@ -7,9 +7,7 @@ import (
 	"github.com/ciur/envok/profiles"
 )
 
-func ListProfiles() {
-
-	currentProfileName := getCurrentProfile()
+func ExportProfile(name string) {
 	configPath, err := getConfigPath()
 	if err != nil {
 		fmt.Printf("Error getting config: %s", err)
@@ -21,11 +19,12 @@ func ListProfiles() {
 		fmt.Printf("Error loading profiles: %s\n", err)
 		os.Exit(1)
 	}
+
 	for _, profile := range items {
-		if profile.Name == currentProfileName {
-			fmt.Printf("%s*\n", profile.Name)
-		} else {
-			fmt.Printf("%s\n", profile.Name)
+		if profile.Name == name {
+			for k, v := range profile.Vars {
+				fmt.Printf("export %s=%s\n", k, v)
+			}
 		}
 	}
 }
