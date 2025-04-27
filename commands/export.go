@@ -3,6 +3,7 @@ package commands
 import (
 	"fmt"
 	"os"
+	"sort"
 
 	"github.com/ciur/envok/profiles"
 )
@@ -22,8 +23,17 @@ func ExportProfile(defaultConfigPath *string, name string) {
 
 	for _, profile := range items {
 		if profile.Name == name {
-			for k, v := range profile.Vars {
-				fmt.Printf("export %s=%s\n", k, v)
+
+			keys := make([]string, 0, len(profile.Vars))
+			for k := range profile.Vars {
+				keys = append(keys, k)
+			}
+
+			sort.Strings(keys)
+
+			// iterate profile.Vars with keys sorted
+			for _, k := range keys {
+				fmt.Printf("export %s=%s\n", k, profile.Vars[k])
 			}
 		}
 	}
