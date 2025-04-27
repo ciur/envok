@@ -19,12 +19,13 @@ func ListProfiles(config *string) {
 
 	items, err := profiles.Load(configPath)
 
-	sort.Sort(profiles.ByName(items))
-
 	if err != nil {
 		fmt.Printf("Error loading profiles: %s\n", err)
 		os.Exit(1)
 	}
+
+	sort.Sort(profiles.ByName(items))
+
 	for _, profile := range items {
 		if profile.Name == currentProfileName {
 			fmt.Printf("%s*\n", profile.Name)
