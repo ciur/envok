@@ -8,10 +8,15 @@ import (
 	"github.com/fatih/color"
 )
 
-func ShowCurrentProfile() {
+func ShowCurrentProfile(defaultConfigPath *string, name *string) {
 
 	currentProfileName := getCurrentProfile()
-	configPath, err := getConfigPath()
+
+	if name != nil {
+		currentProfileName = *name
+	}
+
+	configPath, err := getConfigPath(defaultConfigPath)
 	if err != nil {
 		fmt.Printf("Error getting config: %s", err)
 		os.Exit(1)

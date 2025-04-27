@@ -12,6 +12,7 @@ const VERSION = "0.2"
 
 var profileName = flag.String("p", "", "Profile name")
 var version = flag.Bool("v", false, "show version and exit")
+var configPath = flag.String("f", commands.CONFIG_1, "yaml file with environment variable profiles")
 
 func main() {
 	flag.Parse()
@@ -43,13 +44,13 @@ func main() {
 
 	switch args[0] {
 	case "list":
-		commands.ListProfiles()
+		commands.ListProfiles(configPath)
 	case "export":
-		commands.ExportProfile(*profileName)
+		commands.ExportProfile(configPath, *profileName)
 	case "show":
-		commands.ShowCurrentProfile()
+		commands.ShowCurrentProfile(configPath, profileName)
 	case "reload":
-		commands.ReloadCurrentProfile()
+		commands.ReloadCurrentProfile(configPath, profileName)
 	default:
 		flag.Usage()
 	}

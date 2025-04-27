@@ -30,7 +30,11 @@ func getCurrentProfile() string {
 	return currentProfileName
 }
 
-func getConfigPath() (string, error) {
+func getConfigPath(config *string) (string, error) {
+
+	if config != nil {
+		return *config, nil
+	}
 
 	fileName, err := searchFileUpwards(CONFIG_1)
 	if err != nil {

@@ -7,8 +7,8 @@ import (
 	"github.com/ciur/envok/profiles"
 )
 
-func ExportProfile(name string) {
-	configPath, err := getConfigPath()
+func ExportProfile(defaultConfigPath *string, name string) {
+	configPath, err := getConfigPath(defaultConfigPath)
 	if err != nil {
 		fmt.Printf("Error getting config: %s", err)
 		os.Exit(1)

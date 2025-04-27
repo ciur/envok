@@ -7,10 +7,10 @@ import (
 	"github.com/ciur/envok/profiles"
 )
 
-func ListProfiles() {
+func ListProfiles(config *string) {
 
 	currentProfileName := getCurrentProfile()
-	configPath, err := getConfigPath()
+	configPath, err := getConfigPath(config)
 	if err != nil {
 		fmt.Printf("Error getting config: %s", err)
 		os.Exit(1)
