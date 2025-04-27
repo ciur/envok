@@ -33,7 +33,9 @@ func getCurrentProfile() string {
 func getConfigPath(config *string) (string, error) {
 
 	if config != nil {
-		return *config, nil
+		if _, err := os.Stat(*config); err == nil {
+			return *config, nil // File found
+		}
 	}
 
 	fileName, err := searchFileUpwards(CONFIG_1)
