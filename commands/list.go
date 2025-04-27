@@ -3,6 +3,7 @@ package commands
 import (
 	"fmt"
 	"os"
+	"sort"
 
 	"github.com/ciur/envok/profiles"
 )
@@ -17,6 +18,9 @@ func ListProfiles(config *string) {
 	}
 
 	items, err := profiles.Load(configPath)
+
+	sort.Sort(profiles.ByName(items))
+
 	if err != nil {
 		fmt.Printf("Error loading profiles: %s\n", err)
 		os.Exit(1)
