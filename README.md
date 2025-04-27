@@ -1,6 +1,6 @@
 # Envok
 
-Loads environment variables from yaml files.
+Loads environment variables from yaml file.
 
 
 ## Usage
