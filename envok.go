@@ -8,7 +8,7 @@ import (
 	"github.com/ciur/envok/commands"
 )
 
-const VERSION = "0.7"
+const VERSION = "0.7.1"
 
 var profileName = flag.String("p", "", "Profile name")
 var version = flag.Bool("v", false, "show version and exit")

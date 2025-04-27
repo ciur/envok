@@ -13,7 +13,7 @@ func ShowCurrentProfile(defaultConfigPath *string, name *string) {
 
 	currentProfileName := getCurrentProfile()
 
-	if name != nil {
+	if name != nil && *name != "" {
 		currentProfileName = *name
 	}
 
