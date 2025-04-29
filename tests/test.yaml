@@ -1,0 +1,12 @@
+pro1:
+  X: abc
+
+pro2:
+  X: 1
+  Y: 2
+
+pro3:
+  X: i
+  Y: ii
+  Z: iii
+
